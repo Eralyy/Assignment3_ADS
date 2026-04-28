@@ -3,15 +3,13 @@ public class Experiment {
     Sorter sorter = new Sorter();
     Searcher searcher = new Searcher();
 
-    // Method for measuring sorting time
     public long measureSortTime(int[] arr, String type) {
 
-        // Copy array so original data is not changed
+        //fair start(original data)
         int[] copiedArray = arr.clone();
 
         long startTime = System.nanoTime();
 
-        // Run selected sorting algorithm
         if (type.equals("bubble")) {
             sorter.basicSort(copiedArray);
         }
@@ -22,11 +20,9 @@ public class Experiment {
 
         long endTime = System.nanoTime();
 
-        // Return execution time
         return endTime - startTime;
     }
 
-    // Method for measuring searching time
     public long measureSearchTime(int[] arr, int target) {
 
         long startTime = System.nanoTime();
@@ -38,15 +34,13 @@ public class Experiment {
         return endTime - startTime;
     }
 
-    // Method for running all experiments
     public void runAllExperiments() {
 
-        // Generate arrays of different sizes
         int[] smallArray = sorter.generateRandomArray(10);
         int[] mediumArray = sorter.generateRandomArray(100);
         int[] largeArray = sorter.generateRandomArray(1000);
 
-        // Create sorted arrays for Binary Search
+        //sorted arrays for binary search
         int[] sortedSmall = smallArray.clone();
         int[] sortedMedium = mediumArray.clone();
         int[] sortedLarge = largeArray.clone();
@@ -55,10 +49,10 @@ public class Experiment {
         sorter.advancedSort(sortedMedium);
         sorter.advancedSort(sortedLarge);
 
-        // Print title
+        //organized output
         System.out.println("===== SORTING EXPERIMENTS =====");
 
-        // Bubble Sort
+        //bubble
         System.out.println("\nBubble Sort:");
 
         System.out.println("Small Array: "
@@ -70,7 +64,7 @@ public class Experiment {
         System.out.println("Large Array: "
                 + measureSortTime(largeArray, "bubble") + " ns");
 
-        // Merge Sort
+        //merge
         System.out.println("\nMerge Sort:");
 
         System.out.println("Small Array: "
@@ -82,9 +76,9 @@ public class Experiment {
         System.out.println("Large Array: "
                 + measureSortTime(largeArray, "merge") + " ns");
 
-        // Searching experiments
         System.out.println("\n===== SEARCHING EXPERIMENTS =====");
 
+        //searching
         int target = sortedMedium[50];
 
         System.out.println("Binary Search Time: "
